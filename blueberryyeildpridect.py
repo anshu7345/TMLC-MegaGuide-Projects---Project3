@@ -31,14 +31,18 @@ except Exception as e:
 
 # Define Streamlit app
 def main():
-    st.title("Blueberry Yeild Pridection")
+    st.title("Blueberry Yield Prediction")
 
     # Sidebar with user input
     st.sidebar.header("User Input")
     user_input = get_user_input()
 
-    # Display model predictions
-    display_predictions(user_input)
+    # Predict button
+    predict_button = st.sidebar.button("Predict")
+
+    # Display model predictions if the Predict button is clicked
+    if predict_button:
+        display_predictions(user_input)
 
     # Display SHAP force plot
     display_shap_force_plot()
