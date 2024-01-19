@@ -16,8 +16,7 @@ best_model_path = os.path.join(models_directory, 'lreg_bbry_tuned_model.pkl')
 rf_final_path = os.path.join(models_directory, 'rf_bbry_tuned_model.pkl')
 fs_rf_path = os.path.join(models_directory, 'rf_fs_object.joblib')
 
-
-# Define Streamlit aapp
+# Define Streamlit app
 def main():
     st.title("Machine Learning Model Deployment with Streamlit")
 
@@ -47,20 +46,22 @@ def display_predictions(user_input):
     st.header("Model Predictions")
 
     # Use the loaded model to make predictions
-    prediction_best_model = best_model.predict([list(user_input.values())])
-    prediction_rf_final = rf_final.predict([list(user_input.values())])
+    try:
+        prediction_best_model = best_model.predict([list(user_input.values())])
+        prediction_rf_final = rf_final.predict([list(user_input.values())])
 
-    st.write(f"Best Model Prediction: {prediction_best_model[0]}")
-    st.write(f"Random Forest Prediction: {prediction_rf_final[0]}")
+        st.write(f"Best Model Prediction: {prediction_best_model[0]}")
+        st.write(f"Random Forest Prediction: {prediction_rf_final[0]}")
+    except Exception as e:
+        st.error(f"Error during prediction: {e}")
 
 def display_shap_force_plot():
     # Display SHAP force plot
     st.header("SHAP Force Plot")
 
     # Load the force plot image
-    image = Image.open('test_force_plot1.png')
+    image = Image.open('path/to/test_force_plot1.png')
     st.image(image, caption='SHAP Force Plot', use_column_width=True)
 
 if __name__ == '__main__':
     main()
-
