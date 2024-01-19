@@ -4,8 +4,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import joblib
 from PIL import Image
-""" hello
-"""
+
 import os
 
 # Get the absolute path to the directory where your models are stored
@@ -45,23 +44,32 @@ def display_predictions(user_input):
     # Display predictions from the models
     st.header("Model Predictions")
 
-    # Use the loaded model to make predictions
     try:
-        prediction_best_model = best_model_path.predict([list(user_input.values())])
-        prediction_rf_final = rf_final_path.predict([list(user_input.values())])
+        if best_model_path is not None:
+            prediction_best_model = best_model_path.predict([list(user_input.values())])
+            st.write(f"Best Model Prediction: {prediction_best_model[0]}")
+        else:
+            st.error("Best model is not loaded.")
 
-        st.write(f"Best Model Prediction: {prediction_best_model[0]}")
-        st.write(f"Random Forest Prediction: {prediction_rf_final[0]}")
+        if rf_final_path is not None:
+            prediction_rf_final = rf_final_path.predict([list(user_input.values())])
+            st.write(f"Random Forest Prediction: {prediction_rf_final[0]}")
+        else:
+            st.error("Random Forest model is not loaded.")
+
     except Exception as e:
         st.error(f"Error during prediction: {e}")
 
+
 def display_shap_force_plot():
-    # Display SHAP force plot
+    # Display SHAP force plot from a URL
     st.header("SHAP Force Plot")
 
-    # Load the force plot image
-    image = Image.open('https://github.com/anshu7345/TMLC-MegaGuide-Projects---Project3/blob/main/test_force_plot1.png')
-    st.image(image, caption='SHAP Force Plot', use_column_width=True)
+    # URL to the image
+    image_url = 'https://github.com/anshu7345/TMLC-MegaGuide-Projects---Project3/blob/main/test_force_plot1.png'
+
+    # Display the image directly using st.image
+    st.image(image_url, caption='SHAP Force Plot', use_column_width=True)
 
 if __name__ == '__main__':
     main()
