@@ -52,8 +52,8 @@ def get_user_input():
     user_input = {}
 
     # Add Streamlit widgets for user input (customize as needed)
-    user_input['feature1'] = st.sidebar.slider('Feature 1', min_value=0.0, max_value=100.0, value=50.0)
-    user_input['feature2'] = st.sidebar.slider('Feature 2', min_value=0.0, max_value=100.0, value=50.0)
+    user_input['feature1'] = st.sidebar.slider('AverageRainingDays', min_value=0.0, max_value=100.0, value=50.0)
+    user_input['feature2'] = st.sidebar.slider('clonesize', min_value=0.0, max_value=100.0, value=50.0)
     # Add more features as needed
 
     return user_input
