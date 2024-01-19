@@ -47,8 +47,8 @@ def display_predictions(user_input):
 
     # Use the loaded model to make predictions
     try:
-        prediction_best_model = best_model.predict([list(user_input.values())])
-        prediction_rf_final = rf_final.predict([list(user_input.values())])
+        prediction_best_model = best_model_path.predict([list(user_input.values())])
+        prediction_rf_final = rf_final_path.predict([list(user_input.values())])
 
         st.write(f"Best Model Prediction: {prediction_best_model[0]}")
         st.write(f"Random Forest Prediction: {prediction_rf_final[0]}")
