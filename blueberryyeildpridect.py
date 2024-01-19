@@ -9,7 +9,7 @@ from PIL import Image
 import os
 
 # Get the absolute path to the directory where your models are stored
-models_directory = os.path.join(os.getcwd(), 'C:\Users\Phoni\OneDrive\Desktop\TMLC-MegaGuide-Projects---Project3')
+models_directory = os.path.join(os.getcwd(), 'https://github.com/anshu7345/TMLC-MegaGuide-Projects---Project3/tree/main')
 
 # Load models and objects
 best_model_path = os.path.join(models_directory, 'lreg_bbry_tuned_model.pkl')
