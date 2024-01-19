@@ -17,7 +17,7 @@ rf_final = joblib.load(rf_final_path)
 
 # Define Streamlit app
 def main():
-    st.title("Machine Learning Model Deployment with Streamlit")
+    st.title("Blue Berry Yeild Pridection")
 
     # Sidebar with user input
     st.sidebar.header("User Input")
