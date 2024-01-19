@@ -6,10 +6,16 @@ import joblib
 from PIL import Image
 """ hello
 """
+import os
+
+# Get the absolute path to the directory where your models are stored
+models_directory = os.path.join(os.getcwd(), 'C:\Users\Phoni\OneDrive\Desktop\TMLC-MegaGuide-Projects---Project3')
+
 # Load models and objects
-best_model = joblib.load('lreg_bbry_tuned_model.pkl')
-rf_final = joblib.load('rf_bbry_tuned_model.pkl')
-fs_rf = joblib.load('rf_fs_object.joblib')
+best_model_path = os.path.join(models_directory, 'lreg_bbry_tuned_model.pkl')
+rf_final_path = os.path.join(models_directory, 'rf_bbry_tuned_model.pkl')
+fs_rf_path = os.path.join(models_directory, 'rf_fs_object.joblib')
+
 
 # Define Streamlit aapp
 def main():
