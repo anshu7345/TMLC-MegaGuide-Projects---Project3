@@ -2,22 +2,36 @@ import streamlit as st
 import joblib
 from PIL import Image
 import os
+import requests
 
 # Get the absolute path to the directory where your models are stored
-models_directory = os.path.join(os.getcwd(), 'https://github.com/anshu7345/TMLC-MegaGuide-Projects---Project3/tree/main')  # Update 'models' to your actual directory name
+models_directory = os.path.join(os.getcwd(), 'models')  # Update 'models' to your actual directory name
 
-# Load models and objects
-best_model_path = os.path.join(models_directory, 'lreg_bbry_tuned_model.pkl')
-rf_final_path = os.path.join(models_directory, 'rf_bbry_tuned_model.pkl')
-fs_rf_path = os.path.join(models_directory, 'rf_fs_object.joblib')
+# Ensure the models directory exists
+os.makedirs(models_directory, exist_ok=True)
+
+# URLs to the models on GitHub
+best_model_url = 'https://github.com/anshu7345/TMLC-MegaGuide-Projects---Project3/raw/main/models/lreg_bbry_tuned_model.pkl'
+
+# Download models
+def download_model(url, local_path):
+    response = requests.get(url)
+    with open(local_path, 'wb') as f:
+        f.write(response.content)
+
+download_model(best_model_url, os.path.join(models_directory, 'lreg_bbry_tuned_model.pkl'))
 
 # Load models using joblib.load
-best_model = joblib.load(best_model_path)
-rf_final = joblib.load(rf_final_path)
+try:
+    best_model = joblib.load(os.path.join(models_directory, 'lreg_bbry_tuned_model.pkl'))
+    st.success("Best model loaded successfully.")
+except Exception as e:
+    st.error(f"Error loading the best model: {e}")
+    best_model = None
 
 # Define Streamlit app
 def main():
-    st.title("Blue Berry Yeild Pridection")
+    st.title("Machine Learning Model Deployment with Streamlit")
 
     # Sidebar with user input
     st.sidebar.header("User Input")
@@ -50,13 +64,6 @@ def display_predictions(user_input):
             st.write(f"Best Model Prediction: {prediction_best_model[0]}")
         else:
             st.error("Best model is not loaded.")
-
-        if rf_final is not None:
-            prediction_rf_final = rf_final.predict([list(user_input.values())])
-            st.write(f"Random Forest Prediction: {prediction_rf_final[0]}")
-        else:
-            st.error("Random Forest model is not loaded.")
-
     except Exception as e:
         st.error(f"Error during prediction: {e}")
 
