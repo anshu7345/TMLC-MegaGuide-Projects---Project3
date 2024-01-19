@@ -4,13 +4,12 @@ from PIL import Image
 import os
 
 # Get the absolute path to the directory where your models are stored
-models_directory = os.path.join(os.getcwd(), 'https://github.com/anshu7345/TMLC-MegaGuide-Projects---Project3/tree/main/')  # Update 'models' to your actual directory name
+models_directory = os.path.join(os.getcwd(), 'https://github.com/anshu7345/TMLC-MegaGuide-Projects---Project3/tree/main')  # Update 'models' to your actual directory name
 
 # Load models and objects
 best_model_path = os.path.join(models_directory, 'lreg_bbry_tuned_model.pkl')
 rf_final_path = os.path.join(models_directory, 'rf_bbry_tuned_model.pkl')
 fs_rf_path = os.path.join(models_directory, 'rf_fs_object.joblib')
-
 
 # Load models using joblib.load
 best_model = joblib.load(best_model_path)
@@ -66,7 +65,7 @@ def display_shap_force_plot():
     st.header("SHAP Force Plot")
 
     # URL to the image
-    image_url = 'test_force_plot1.png'
+    image_url = 'https://github.com/anshu7345/TMLC-MegaGuide-Projects---Project3/raw/main/test_force_plot1.png'
 
     # Display the image directly using st.image
     st.image(image_url, caption='SHAP Force Plot', use_column_width=True)
