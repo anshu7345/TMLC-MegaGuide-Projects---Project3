@@ -31,7 +31,7 @@ except Exception as e:
 
 # Define Streamlit app
 def main():
-    st.title("Machine Learning Model Deployment with Streamlit")
+    st.title("Blueberry Yeild Pridection")
 
     # Sidebar with user input
     st.sidebar.header("User Input")
