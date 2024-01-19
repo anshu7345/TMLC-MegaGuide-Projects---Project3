@@ -60,7 +60,7 @@ def display_shap_force_plot():
     st.header("SHAP Force Plot")
 
     # Load the force plot image
-    image = Image.open('path/to/test_force_plot1.png')
+    image = Image.open('https://github.com/anshu7345/TMLC-MegaGuide-Projects---Project3/blob/main/test_force_plot1.png')
     st.image(image, caption='SHAP Force Plot', use_column_width=True)
 
 if __name__ == '__main__':
